@@ -1,0 +1,15 @@
+#!/bin/sh
+
+python /usr/local/bin/import_logs.py \
+ --url=<%= @url %> --token-auth=<%= @token_auth %> \
+ <%- if @idsite %>--idsite=<%= @idsite %><%-end-%> --recorders=<%= @recorders %> \
+<%- if @add_sites_new_hosts %> --add-sites-new-hosts \
+<%-end-%>
+<%- if @enable_http_errors%> --enable-http-errors \
+<%-end-%>
+<%- if @enable_http_redirects %> --enable-http-redirects \
+<%-end-%>
+<% if @enable_static %> --enable-static<%end%><%if @enable_bots%> --enable-bots \
+<%-end-%>
+ --log-format-name=<%=@log_format_name%> <%= @log_file %>
+

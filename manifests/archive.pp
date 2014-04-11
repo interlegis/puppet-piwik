@@ -11,6 +11,10 @@ class piwik::archive ( $ensure = 'present',
 
   validate_re($url,'^(https?)://.*$','You must provide a valid URL for the piwik server.')
 
+  php::ini { '/etc/php5/cli/php.ini':
+    memory_limit => '512M',
+  }
+
   cron { "piwik_archive":
     ensure => $ensure,
     hour => $cron_hour,
@@ -18,6 +22,7 @@ class piwik::archive ( $ensure = 'present',
     user => $cron_user,
     command => "/usr/bin/php5 ${piwik::directory}/misc/cron/archive.php --url=${url} > ${logfile}",
     environment => [ "MAILTO=$mailto" ],
+    require => Php::Ini['/etc/php5/cli/php.ini'],
   }
  
 }

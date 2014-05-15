@@ -1,5 +1,6 @@
 #!/bin/sh
 
+<%= @execute_cmd_before %>
 python /usr/local/bin/import_logs.py \
  --url=<%= @url %> --token-auth=<%= @token_auth %> \
  <%- if @idsite %>--idsite=<%= @idsite %><%-end-%> --recorders=<%= @recorders %> \

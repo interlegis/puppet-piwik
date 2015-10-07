@@ -31,7 +31,7 @@ class piwik::logimportscript ( $url,
 
   include wget
   wget::fetch { "import_logs.py":
-    source => "https://raw.githubusercontent.com/piwik/piwik/master/misc/log-analytics/import_logs.py",
+    source => "https://raw.githubusercontent.com/piwik/piwik-log-analytics/master/import_logs.py",
     destination => "/usr/local/bin/import_logs.py",
   }
 
